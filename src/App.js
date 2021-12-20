@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import ShoppingCart from "./components/shoppingcart";
-import ProductList from "./components/productList";
-import Hero from "./components/hero";
+import ShoppingCart from "./Components/shoppingCart";
+import ProductList from "./Components/productList";
+import Hero from "./Components/hero";
 
 class App extends Component {
   constructor(props) {
@@ -15,23 +15,21 @@ class App extends Component {
 
   // Inventory - we might normally prefer to use a database, but this is a good placeholder.
   inventory = [
-    { name: "Apple", price: 1.99 },
-    { name: "Loaf of Bread", price: 1.5 },
-    { name: "Milk", price: 2.5 }
+    { name: "Kiara", price: 150 },
+    { name: "Bah", price: 1.25 },
+    { name: "Noemi", price: 150 }
   ];
-
   // The add and remove functions should update the state's cart and the total.
   // The add function has been built already. The remove function has not.
   addToShoppingCart = (item) => {
-
     let total = this.state.total;
-    if (item == "Apple") {
+    if (item == "Kiara") {
       total += 1.99;
     }
-    if (item == "Loaf of Bread") {
+    if (item == "Bah") {
       total += 1.5;
     }
-    if (item == "Milk") {
+    if (item == "Noemi") {
       total += 2.5;
     }
     this.setState((state) => {
@@ -70,6 +68,7 @@ class App extends Component {
         </div>
       </div>
     );
+  }
 }
 
 export default App;
