@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import ShoppingCart from "./Components/shoppingCart";
-import ProductList from "./Components/productList";
-import Hero from "./Components/hero";
+import ShoppingCart from "./components/shoppingcart";
+import ProductList from "./components/productList";
+import Hero from "./components/hero";
 
 class App extends Component {
   constructor(props) {
@@ -15,36 +15,31 @@ class App extends Component {
 
   // Inventory - we might normally prefer to use a database, but this is a good placeholder.
   inventory = [
-    { name: "Kiara", price: 150 },
-    { name: "Bah", price: 1.25 },
-    { name: "Noemi", price: 150 }
+    { name: "Kiara", price: 1.99 },
+    { name: "Anta", price: 1.5 },
+    { name: "Bah", price: 2.5 }
   ];
+
   // The add and remove functions should update the state's cart and the total.
   // The add function has been built already. The remove function has not.
   addToShoppingCart = (item) => {
-    let total = this.state.total;
-    if (item == "Kiara") {
-      total += 1.99;
-    }
-    if (item == "Bah") {
-      total += 1.5;
-    }
-    if (item == "Noemi") {
-      total += 2.5;
-    }
     this.setState((state) => {
       state.cart.push(item);
       return state;
     });
-    this.setState({ total: total });
+    console.log(this.state.cart);
   };
 
   removeFromShoppingCart = (item) => {
+    // Get the current cart
     const cart = this.state.cart;
+    // Get the index of the item that we are looking for. Will return -1 if it is not on the list
     let index = cart.indexOf(item);
+    // If the item is on the list, remove it
     if (index !== -1) {
       cart.splice(index, 1);
     }
+    // Update the state with the new cart
     this.setState((state) => {
       return state;
     });
@@ -54,16 +49,13 @@ class App extends Component {
     return (
       <div className="App">
         <Hero />
-        <ShoppingCart
-          items={this.state.cart}
-          total={this.state.total}
-          inventory={this.inventory}
-        />
+        <ShoppingCart cart={this.state.cart} />
         <div className="main">
           <ProductList
             inventory={this.inventory}
             add={this.addToShoppingCart}
             remove={this.removeFromShoppingCart}
+            cost={this.state.cost}
           />
         </div>
       </div>
